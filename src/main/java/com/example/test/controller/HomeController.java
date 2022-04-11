@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-    @RequestMapping(value = "/", method = RequestMethod.GET) // value = URL, method = 요청방식
+    @RequestMapping(value = "/hello", method = RequestMethod.GET) // value = URL, method = 요청방식
     public String home(Model model){
         String text = "Hello World";
         model.addAttribute("text", text);
