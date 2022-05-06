@@ -3,6 +3,8 @@ package com.example.test.service;
 import com.example.test.entity.Board;
 import com.example.test.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +18,7 @@ public class BoardService {
     @Autowired
     private BoardRepository boardRepository;
 
-    // 글 작성 처리
+    // 글 작성 처리 + 파일 업로드
     public void write(Board board, MultipartFile file) throws Exception{
 
         String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
@@ -36,9 +38,9 @@ public class BoardService {
     }
 
     //게시글 처리
-    public List<Board> boardList(){
+    public Page<Board> boardList(Pageable pageable){
 
-        return boardRepository.findAll();
+        return boardRepository.findAll(pageable);
     }
 
     //특정 게시글 불러오기
