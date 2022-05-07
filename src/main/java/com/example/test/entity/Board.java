@@ -2,14 +2,15 @@ package com.example.test.entity;
 
 
 import lombok.Data;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
+//@MappedSuperclass
+//@EntityListeners(AuditingEntityListener.class)
 public class Board {
 
     @Id
@@ -19,5 +20,8 @@ public class Board {
     private String content;
     private String filename;
     private String filepath;
+    private String name;
+//    private Date create_date;
+//    private Date update_date;
 
 }

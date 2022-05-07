@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>게시물 작성폼</title>
+    <title>게시물 글쓰기</title>
 </head>
 
 <style>
@@ -28,10 +28,14 @@
 <body>
     <div class="layout">
         <form action="/board/writepro" method="post" enctype="multipart/form-data">
-            <input name="title" type="text">
-            <textarea name="content"></textarea>
+            <div>작성자 <input name="name" type="write"></div>
+            <div>제목 <input name="title" type="text"></div>
+            <div>내용 <textarea name="content"></textarea></div>
             <input type="file" name="file">
             <button type="submit">작성</button>
+        </form>
+        <form th:action="@{/board/list}" method="get">
+            <button>목록</button>
         </form>
     </div>
 
