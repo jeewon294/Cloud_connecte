@@ -28,8 +28,9 @@
 <body>
 <div class="layout">
     <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
-        <input name="title" type="text" th:value="${board.title}">
-        <textarea name="content" th:text="${board.content}"></textarea>
+        <div>작성자 <input name="name" type="write" th:value="${board.name}"></div>
+        <div>제목<input name="title" type="text" th:value="${board.title}"></div>
+        <div>내용<textarea name="content" th:text="${board.content}"></textarea></div>
         <button type="submit">수정</button>
     </form>
 </div>

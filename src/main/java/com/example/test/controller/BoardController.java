@@ -20,12 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class BoardController {
 
+
     @Autowired
     private BoardService boardService;
 
-    @GetMapping("/board/write") //localhost:8072/bord/write
-
-    public String boardWriteForm(){
+    @GetMapping("/board/write") //localhost:8090/board/write
+    public String boardWriteForm() {
 
         return "boardwrite";
     }
@@ -35,7 +35,7 @@ public class BoardController {
 
         boardService.write(board, file);
 
-        model.addAttribute("message", "작성이 완료되었습니다.");
+        model.addAttribute("message", "글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
         return "message";
@@ -44,27 +44,24 @@ public class BoardController {
     @GetMapping("/board/list")
     public String boardList(Model model,
                             @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-                            String searchKeyword){
+                            String searchKeyword) {
 
         Page<Board> list = null;
 
-        if(searchKeyword == null){
+        if(searchKeyword == null) {
             list = boardService.boardList(pageable);
-        }else{
+        }else {
             list = boardService.boardSearchList(searchKeyword, pageable);
         }
-
 
         int nowPage = list.getPageable().getPageNumber() + 1;
         int startPage = Math.max(nowPage - 4, 1);
         int endPage = Math.min(nowPage + 5, list.getTotalPages());
 
-
         model.addAttribute("list", list);
         model.addAttribute("nowPage", nowPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
-
 
         return "boardlist";
     }
@@ -87,6 +84,7 @@ public class BoardController {
     @GetMapping("/board/modify/{id}")
     public String boardModify(@PathVariable("id") Integer id,
                               Model model) {
+
         model.addAttribute("board", boardService.boardView(id));
 
         return "boardmodify";
@@ -102,6 +100,7 @@ public class BoardController {
 
         boardTemp.setTitle(board.getTitle());
         boardTemp.setContent(board.getContent());
+        boardTemp.setName(board.getName());
 
         boardService.write(boardTemp, file);
 
