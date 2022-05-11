@@ -23,7 +23,8 @@
                     <th>글번호</th>
                     <th>제목</th>
                     <th>작성자</th>
-<!--                    <th>날짜</th>-->
+                    <th>날짜</th>
+<!--                    <th>조회수</th>-->
                 </tr>
             </thead>
             <tbody>
@@ -35,9 +36,9 @@
                     <td>
                         <a th:text="${board.name}"></a><!-- 작성자 -->
                     </td>
-<!--                    <td>-->
-<!--&lt;!&ndash;                        <a th:text="${board.create_date}"></a>&lt;!&ndash; 작성날짜 &ndash;&gt;&ndash;&gt;-->
-<!--                    </td>-->
+                    <td th:text="${#temporals.format(board.board_date, 'yyyy-MM-dd HH:mm:ss')}">
+                        <!-- 작성날짜 -->
+                    </td>
                 </tr>
             </tbody>
 
@@ -54,6 +55,7 @@
         <form th:action="@{/board/write}" method="get">
             <button type="submit">작성</button>
         </form>
+<!--        <form th:text="${#temporals.format('yyyy-MM-dd HH:mm:ss')}" method="get"></form>-->
     </div>
 
 </body>

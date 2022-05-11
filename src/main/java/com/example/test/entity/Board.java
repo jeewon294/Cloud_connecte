@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -21,6 +22,8 @@ public class Board {
     private String filename;
     private String filepath;
     private String name;
+    private LocalDateTime board_date;
+    private Integer hit;
 //    private Date create_date;
 //    private Date update_date;
 
