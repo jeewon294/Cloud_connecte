@@ -87,7 +87,7 @@ public class BoardController {
 
         model.addAttribute("board", boardService.boardView(id));
 
-        return "boardmodify";
+        return "board_modify";
     }
 
     @PostMapping("/board/update/{id}")
